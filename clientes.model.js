@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 
 module.exports = new mongoose.Schema({
-    RFC:{
+    rfc:{
         type:String,
         required: true,
-        match:/ r/
+        //match:/ r/
     },
     nombre:{
         type:String,
@@ -15,7 +15,7 @@ module.exports = new mongoose.Schema({
         required:true
     },
     telefono:{
-        type:Number
+        type:String
     },
     email:{
         type:String,
