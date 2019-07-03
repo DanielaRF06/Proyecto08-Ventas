@@ -81,9 +81,8 @@ async function delMarca(idMarca){
 //allClientes();
 //oneCl("ABCJ880326A7A");
 //upCliente("5d1ce4fcfed96115b862ccbf","otro","otro","otro");
-//  |delCliente("5d1ce4fcfed96115b862ccbf");
-
-        /**    Marcas */
+//delCliente("5d1ce4fcfed96115b862ccbf");
+     /**    Marcas */
 
 
 //crearMarca();
@@ -91,4 +90,5 @@ async function delMarca(idMarca){
 //unaMarca("Lenovo");
 //upMarca("5d1ce4fcfed96115b862ccc0","Toshiba 2.0");
 //delMarca("5d1d10bde655352a582da09e")
+
 

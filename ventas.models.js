@@ -1,15 +1,15 @@
 var mongoose = require("mongoose");
 
 module.exports = new mongoose.Schema({
-    cliente:{
-        type:String,
-        required:true
-    },
+    cliente:{type: mongoose.Schema.Types.ObjectId, ref: 'Cliente' },
     fecha:{
         type:Date.now,
         required: true
     },
-    productos:[{_id:String,cantidad:Number}],
+    productos:[{
+        _id:{type: mongoose.Schema.Types.ObjectId, ref: 'Producto'},
+        cantidad:Number
+    }],
     subtotal:{
         type:Number,
         required:true
