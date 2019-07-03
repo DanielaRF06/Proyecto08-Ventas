@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var schema = require('./clientes.model');
 
-var Cliente = mongoose.model('Cliente',schema,'cliente')
+var Cliente = mongoose.model('Cliente',schema,'cliente');
 
 function insertarCliente(cliente){
     Cliente.create(cliente,function(error){
