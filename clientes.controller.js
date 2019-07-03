@@ -40,12 +40,12 @@ async function oneCliente(rfcCliente,Cliente){
             .catch((error)=>{
                 console.log("Error");
                 return error;
-            })
+            });
             
     return oneC;
 }
 
-async function updateCliente(id,dom,em ,tel){
+async function updateCliente(id,dom,em ,tel,Cliente){
     var upCliente = await Cliente.update({_id:id},{$set:{domicilio:dom,email:em,telefono:tel}},
             function(error,docs){
                 if(error){
