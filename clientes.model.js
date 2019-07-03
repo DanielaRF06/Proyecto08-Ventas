@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = new mongoose.Schema({
-    RFC:{
+    rfc:{
         type:String,
         required: true,
         match:/^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))((-)?([A-Z\d]{3}))?$/
@@ -15,7 +15,7 @@ module.exports = new mongoose.Schema({
         required:true
     },
     telefono:{
-        type:Number
+        type:String
     },
     email:{
         type:String,
