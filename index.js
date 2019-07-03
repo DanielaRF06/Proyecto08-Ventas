@@ -58,8 +58,8 @@ async function crearMarca(){
 }
   */
 //crearCliente();
-//allClientes();
+allClientes();
 //oneCl("ABCJ880326A7A");
 //upCliente("5d1ce4fcfed96115b862ccbf","otro","otro","otro");
-delCliente("5d1ce4fcfed96115b862ccbf");
+//delCliente("5d1ce4fcfed96115b862ccbf");
 
