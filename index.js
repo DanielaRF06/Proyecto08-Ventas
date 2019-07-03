@@ -46,7 +46,7 @@ async function delCliente(idCliente){
      console.log(del);
 }
   /************  MARCAS  */
-
+/*
 async function crearMarca(){
         var m ={
             marca:"Honda"
@@ -54,7 +54,7 @@ async function crearMarca(){
      var marcaCreada = await marcaController.insertarMarca(m,Marca);
      console.log("Marca creada");
      console.log(marcaCreada);
-}
+}*/
  async function allMarcas(){
     var buscarTodas = await marcaController.allMarcas(Marca);
      console.log("Todos los registros");
@@ -90,5 +90,5 @@ async function delMarca(idMarca){
 //allMarcas();
 //unaMarca("Lenovo");
 //upMarca("5d1ce4fcfed96115b862ccc0","Toshiba 2.0");
-delMarca("5d1d10bde655352a582da09e")
+//delMarca("5d1d10bde655352a582da09e")
 
