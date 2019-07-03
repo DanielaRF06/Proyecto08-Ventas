@@ -1,21 +1,21 @@
-var mongoose = require('mongoose');
-var schema = require('./clientes.model');
 
-var Cliente = mongoose.model('Cliente',schema,'cliente');
 
-function insertarCliente(cliente){
-    Cliente.create(cliente,function(error){
-        if(error){
-            console.log(error);
-            process.exit(1);
-        }
-        console.log("Registro exitoso");
-        process.exit(0);
-    });
+//Insertar
+async function insertarCliente(cliente,Cliente){
+    var crearCliente = await Cliente.create(cliente).
+            then((data)=>{
+                console.log("Cliente registrado");
+                return data;
+            })
+            .catch((error)=>{
+                console.log("Error");
+                return error;
+            });
+    return crearCliente;
 }
 
-function allClientes(){
-    Cliente.find({},function(error,docs){
+async function allClientes(Cliente){
+    var todosC = await Cliente.find({},function(error,docs){
         if(error){
             console.log(error);
             process.exit(1);
@@ -24,24 +24,29 @@ function allClientes(){
         console.log(docs);
         process.exit(0);
     });
+
+    return todosC;
 }
 
-function oneCliente(rfcCliente){
-    Cliente.find({rfc: rfcCliente},
-            function(error,docs){
-                if(error){
-                    console.log(error);
-                    process.exit(1);
-                }
-                console.log(" Consulta de un registro");
-                console.log(docs);
-                process.exit(0);
-            }
-        );
+async function oneCliente(rfcCliente,Cliente){
+    var params={
+        rfc:rfcCliente
+    }
+    var oneC= await Cliente.find(params).
+            then((data)=>{
+                console.log(" Datos  ");
+                return data;
+            })
+            .catch((error)=>{
+                console.log("Error");
+                return error;
+            })
+            
+    return oneC;
 }
 
-function updateCliente(id,dom,em ,tel){
-    Cliente.update({_id:id},{$set:{domicilio:dom,email:em,telefono:tel}},
+async function updateCliente(id,dom,em ,tel){
+    var upCliente = await Cliente.update({_id:id},{$set:{domicilio:dom,email:em,telefono:tel}},
             function(error,docs){
                 if(error){
                     console.log(error);
@@ -52,20 +57,23 @@ function updateCliente(id,dom,em ,tel){
                 process.exit(0);
                 
             });
+    return upCliente;
 }
 
-function deleteCliente(idC){
-    Cliente.findByIdAndRemove({_id:idC},
-        function(error,docs){
-            if(error,docs){
-                console.log(error);
-                process.exit(1);
-            }
-
-            console.log("--  Cliente Eliminado  --");
-            console.log(docs);
-            process.exit(0);
-        });
+async function deleteCliente(idC,Cliente){
+    var params={
+        _id:idC
+    }
+    var delCliente = await Cliente.findByIdAndRemove(params)
+            .then((data) => {
+                console.log("Producto Eliminado");
+                return data;
+            })
+            .catch((error) => {
+                console.log("Error!!!");
+                return error;
+            });
+        return delCliente;
 }
 
 module.exports.insertarCliente = insertarCliente;
@@ -74,4 +82,4 @@ module.exports.oneCliente = oneCliente;
 module.exports.updateCliente = updateCliente;
 module.exports.deleteCliente = deleteCliente;
 
-mongoose.connect('mongodb://localhost:27017/DBVentas');
+
