@@ -91,4 +91,3 @@ async function delMarca(idMarca){
 //upMarca("5d1ce4fcfed96115b862ccc0","Toshiba 2.0");
 //delMarca("5d1d10bde655352a582da09e")
 
-

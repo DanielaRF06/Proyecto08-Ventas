@@ -14,7 +14,7 @@ async function insertarMarca(marca, Marca){
 }
 //Buscar todos
 async function  allMarcas(Marca){
-    var todasM = await Marca.find({}, function(error,docs){
+    var todasM = await Marca.get({}, function(error,docs){
         if(error){
             console.log(error);
             process.exit(1);
