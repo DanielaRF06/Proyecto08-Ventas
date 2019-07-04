@@ -74,4 +74,3 @@ module.exports.oneCliente = oneCliente;
 module.exports.updateCliente = updateCliente;
 module.exports.deleteCliente = deleteCliente;
 
-mongoose.connect('mongodb://localhost:27017/DBVentas');

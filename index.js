@@ -1,26 +1,62 @@
-//var clienteController = require('./clientes.controller');
-var marcaController = require('./marca.controller');
-/********  Clientes  **************** */
+var mongoose = require("mongoose");
+const clienteController = require("./clientes.controller");
+const productoController = require("./producto.controller");
+
+var marcaSchema = require("./marca.model");
+var clienteSchema = require("./clientes.model");
+var productoSchema = require ("./producto.model");
+
+mongoose.connect('mongodb://localhost:27017/DBVentas',{ useNewUrlParser: true } );
+
+var Marca = mongoose.model('Marca',marcaSchema,'marcas');
+var Cliente = mongoose.model('Cliente',clienteSchema,'clientes');
+var Producto = mongoose.model('Producto',productoSchema,'productos');
+
+
+async function crearCliente(){
+    var c = {
+        rfc: "VECJ880326A7A",
+        nombre: "Daniela",
+        domicilio: "Xalisco Nay",
+        telefono: "123",
+        email: "daniela@ruiz.io"
+    };
+     /** CLIENTES */
+     var clienteCreado = await clienteController.insertarCliente(c,Cliente);
+     console.log("Cliente creado");
+     console.log(clienteCreado);
+   
+}
+  /************  MARCAS  */
 /*
-var cliente = {
-    rfc: "VECJ880326A7A",
-    nombre: "Daniela",
-    domicilio: "Xalisco Nay",
-    telefono: "123",
-    email: "daniela@ruiz.io"
-};
+async function crearMarca(){
+    var m = {
+        marca:"Lenovo"
+    };
+
+     var marcaCreada = await marcaController.insertarMarca(m,Marca);
+     console.log("Marca creada");
+     console.log(marcaCreada);
+}
 */
-//clienteController.insertarCliente(cliente);
-//clienteController.allClientes();
-//clienteController.oneCliente("rfcPrueba");
-//clienteController.updateCliente("5d1b7741d9f9483268979f3f","nuevo","email@com.io","tele");
-//clienteController.deleteCliente("5d1b7741d9f9483268979f3f");
-/*******    Marcas    ***** */
-var marca = {
-    marca:"Toshiba"
-};
-//marcaController.insertarMarca(marca);
-//marcaController.allMarcas();
-//marcaController.oneMarca(" id ");
-//marcaController.updateMarca("","toshiba2");
-//marcaController.deleteMarca("5d1c17cc7efc4d2de80b8181");
+
+async function createBrandAndProduct() {
+    var producto = {
+        codigo: "asd123",
+        p_compra: 100,
+        p_venta: 50,
+        cantidad: 1,
+        minimo:2,
+        maximo:5,
+    };
+    
+    const marca = "Apple";
+    
+    var productoCreated = await productoController.create(producto, marca, Producto, Marca);
+    console.log("------- Producto Creado --------");
+    console.log(productoCreated);
+    
+}
+
+//crearCliente();
+createBrandAndProduct();

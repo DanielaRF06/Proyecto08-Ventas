@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var schema = require('./marca.model');
 
-var Marca = mongoose.model('Marca',schema,'marca');
+
+
+
 
 //Crear
 function insertarMarca(marca){
@@ -14,6 +14,23 @@ function insertarMarca(marca){
         process.exit(0);
     });
 }
+
+
+async function createMarca(marca, Marca) {
+    var marcaCreated = await Marca.create(marca)
+        .then((data) => {
+            console.log("Marca Guardada!!!");
+            // console.log(data);
+            return data;
+        })
+        .catch((error) => {
+            console.log("Error!!!");
+            // console.log(error);
+            return error;
+        });
+    return marcaCreated;
+}
+
 //Buscar todos
 function allMarcas(){
     Marca.find({}, function(error,docs){
@@ -72,5 +89,5 @@ module.exports.allMarcas = allMarcas;
 module.exports.oneMarca = oneMarca;
 module.exports.updateMarca = updateMarca;
 module.exports.deleteMarca = deleteMarca;
+module.exports.createMarca = createMarca;
 
-mongoose.connect('mongodb://localhost:27017/DBVentas');
