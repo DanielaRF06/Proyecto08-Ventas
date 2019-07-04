@@ -8,7 +8,7 @@ async function create(productos, marca, Productos, Marca) {
         marca: marca
     };
 
-    var marcaCreated = await marcaController.create(marca, Marca);
+    var marcaCreated = await marcaController.insertarMarca(marca, Marca);
 
     product["marca"] = marcaCreated._id;
 
@@ -32,7 +32,7 @@ async function create(productos, marca, Productos, Marca) {
 async function BusquedaPrecioProducto(precioToFind, Productos) {
 
     var params = {
-        precio: precioToFind
+        p_venta: precioToFind
     }
 
     var productosFind = await Productos.find(params)
