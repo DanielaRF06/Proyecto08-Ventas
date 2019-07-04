@@ -4,15 +4,17 @@
 
 
 //Crear
-function insertarMarca(marca){
-    Marca.create(marca,function(error){
-        if(error){
-            console.log(error);
-            process.exit(1);
-        }
-        console.log("Registro exitoso");
-        process.exit(0);
-    });
+async function insertarMarca(marca, Marca){
+    var crearMarca = await Marca.create(marca)
+        .then((data)=>{
+                console.log(" Registro de marca exitoso");
+                return data;
+        })
+        .catch((err)=>{
+                console.log("Error al insertar");
+                return err;
+        });
+    return crearMarca;
 }
 
 
@@ -32,8 +34,8 @@ async function createMarca(marca, Marca) {
 }
 
 //Buscar todos
-function allMarcas(){
-    Marca.find({}, function(error,docs){
+async function  allMarcas(Marca){
+    var todasM = await Marca.find({}, function(error,docs){
         if(error){
             console.log(error);
             process.exit(1);
@@ -42,23 +44,28 @@ function allMarcas(){
         console.log(docs);
         process.exit(0);
     });
+
+    return todasM;
 }
 //Buscar uno
-function oneMarca(idMarca){
-    Marca.find({_id: idMarca},
-        function(error,docs){
-            if(error){
-                console.log(error);
-                process.exit(1);
-            }
-            console.log(" Consulta de marca ");
-            console.log(docs);
-            process.exit(0);
-        });
+async function oneMarca(nomMarca,Marca){
+    var params = {
+        marca: nomMarca
+    }
+    var marcaN = await Marca.find(params)
+                .then((data)=>{
+                    return(data);
+                })
+                .catch((err)=>{
+                    console.log("No se encontro");
+                    return err;
+                });
+        
+    return marcaN;
 }
 //Actualizar
-function updateMarca(id,nommarca){
-    Marca.update({_id:id}, {$set:{marca:nommarca}},
+async function updateMarca(id,nommarca,Marca){
+    var upMarca = await Marca.update({_id:id}, {$set:{marca:nommarca}},
         function(error,docs){
             if(error){
                 console.log(error);
@@ -68,20 +75,26 @@ function updateMarca(id,nommarca){
             console.log(docs);
             process.exit(0);
         });
+
+    return upMarca;
 }
 //Eliminar
+async function deleteMarca(idM,Marca){
+    var params={
+        _id:idM
+    }
 
-function deleteMarca(idM){
-    Marca.findByIdAndDelete({_id:idM},
-        function(error,docs){
-            if(error,docs){
-                console.log(error);
-                process.exit(1);
-            }
-            console.log(" -- Marca Eliminada -- ");
-            console.log(docs);
-            process.exit(0);
-        });
+    delMarca = await Marca.findByIdAndDelete(params)
+            .then((data) => {
+                console.log("Producto Eliminado");
+                return data;
+            })
+            .catch((error) => {
+                console.log("Error!!!");
+                return error;
+            });
+    return delMarca;
+        
 }
 
 module.exports.insertarMarca = insertarMarca;

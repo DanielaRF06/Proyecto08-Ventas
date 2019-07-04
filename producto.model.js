@@ -14,8 +14,7 @@ module.exports = new mongoose.Schema({
         required:true
     },
     marca:{
-        type:String,
-        required:true
+        type: mongoose.Schema.Types.ObjectId, ref: 'Marca' 
     },
     cantidad:{
         type:Number,
