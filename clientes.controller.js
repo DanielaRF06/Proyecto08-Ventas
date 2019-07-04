@@ -82,4 +82,3 @@ module.exports.oneCliente = oneCliente;
 module.exports.updateCliente = updateCliente;
 module.exports.deleteCliente = deleteCliente;
 
-
