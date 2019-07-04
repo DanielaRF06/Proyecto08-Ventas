@@ -30,7 +30,7 @@ async function create(producto, marca, Producto, Marca) {
 async function BusquedaPrecioProducto(precioToFind, Productos) {
 
     var params = {
-        precio: precioToFind
+        p_venta: precioToFind
     }
 
     var productosFind = await Productos.find(params)

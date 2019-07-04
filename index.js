@@ -2,6 +2,23 @@ var mongoose = require("mongoose");
 const clienteController = require("./clientes.controller");
 const productoController = require("./producto.controller");
 
+
+const marcaController = require('./marca.controller');
+const clienteController = require('./clientes.controller');
+const productoController = require('./productos.controller');
+const ventaController = require('./ventas.controller');
+var marcaSchema = require('./marca.model');
+var clienteSchema = require('./clientes.model');
+var productoSchema = require('./productos.model');
+var ventasSchema = require('./ventas.models');
+
+mongoose.connect('mongodb://localhost:27017/DBVentas',{useNewUrlParser:true});
+
+var Marca = mongoose.model('Marca',marcaSchema,'marcas');
+var Cliente = mongoose.model('Cliente',clienteSchema,'clientes');
+var Producto = mongoose.model('Producto',productoSchema,'producto');
+var Venta = mongoose.model('Venta',ventasSchema,'venta');
+
 var marcaSchema = require("./marca.model");
 var clienteSchema = require("./clientes.model");
 var productoSchema = require ("./producto.model");
@@ -11,6 +28,7 @@ mongoose.connect('mongodb://localhost:27017/DBVentas',{ useNewUrlParser: true } 
 var Marca = mongoose.model('Marca',marcaSchema,'marcas');
 var Cliente = mongoose.model('Cliente',clienteSchema,'clientes');
 var Producto = mongoose.model('Producto',productoSchema,'productos');
+
 
 
 async function crearCliente(){
@@ -48,7 +66,7 @@ async function delCliente(idCliente){
      console.log(del);
 }
   /************  MARCAS  */
-/*
+
 async function crearMarca(){
     var m = {
         marca:"Lenovo"
@@ -58,7 +76,7 @@ async function crearMarca(){
      console.log("Marca creada");
      console.log(marcaCreada);
 }
-*/
+
 
 async function createBrandAndProduct() {
     var producto = {
@@ -108,6 +126,31 @@ async function delMarca(idMarca){
      console.log(" Eliminado ");
      console.log(del);
 }
+
+                        /** Ventas */
+async function crearVenta(){
+    var venta = {
+        subtotal:0,
+        iva:0,
+        total:0
+    };
+
+    var precio=15;
+    
+    var cliente={
+        rfc: "ABCJ880326A7A",
+        nombre: "Carlos",
+        domicilio: "TepicNay",
+        telefono: "12345",
+        email: "carlos@ruiz.io"
+    };
+    
+    var insertarVenta = await ventaController.create(precio,cliente,venta,Producto,Cliente,Venta);
+    console.log("---venta creada---");
+    console.log(insertarVenta);
+
+
+}           
         /***    Clientes */
 //crearCliente();
 //allClientes();
@@ -124,3 +167,5 @@ async function delMarca(idMarca){
 //delMarca("5d1d10bde655352a582da09e")
 
 
+/** metodos venta */
+//crearVenta();
