@@ -3,7 +3,8 @@ var mongoose = require("mongoose");
 module.exports = new mongoose.Schema({
     cliente:{type: mongoose.Schema.Types.ObjectId, ref: 'Cliente' },
     fecha:{
-        type:Date.now,
+        type:Date,
+        default:Date.now,
         required: true
     },
     productos:[{

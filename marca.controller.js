@@ -1,4 +1,8 @@
 
+
+
+
+
 //Crear
 async function insertarMarca(marca, Marca){
     var crearMarca = await Marca.create(marca)
@@ -12,6 +16,23 @@ async function insertarMarca(marca, Marca){
         });
     return crearMarca;
 }
+
+
+async function createMarca(marca, Marca) {
+    var marcaCreated = await Marca.create(marca)
+        .then((data) => {
+            console.log("Marca Guardada!!!");
+            // console.log(data);
+            return data;
+        })
+        .catch((error) => {
+            console.log("Error!!!");
+            // console.log(error);
+            return error;
+        });
+    return marcaCreated;
+}
+
 //Buscar todos
 async function  allMarcas(Marca){
     var todasM = await Marca.get({}, function(error,docs){
@@ -81,4 +102,5 @@ module.exports.allMarcas = allMarcas;
 module.exports.oneMarca = oneMarca;
 module.exports.updateMarca = updateMarca;
 module.exports.deleteMarca = deleteMarca;
+module.exports.createMarca = createMarca;
 
