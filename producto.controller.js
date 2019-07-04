@@ -1,18 +1,20 @@
 var marcaController = require("./marca.controller");
 
-
-
-async function create(productos, marca, Productos, Marca) {
+async function create(producto, marca, Producto, Marca) {
 
     var marca = {
         marca: marca
     };
 
+<<<<<<< HEAD:productos.controller.js
     var marcaCreated = await marcaController.insertarMarca(marca, Marca);
+=======
+    var brandCreated = await marcaController.createMarca(marca,Marca);
+>>>>>>> 7ec7e19ae31cc54e3e785ec554a0db8c31731179:producto.controller.js
 
-    product["marca"] = marcaCreated._id;
+    producto["marca"] = brandCreated._id;
 
-    var productosCreated = await Productos.create(productos)
+    var productCreated = await Producto.create(producto)
         .then((data) => {
             console.log("Producto Guardado!!!");
             // console.log(data);
@@ -23,11 +25,11 @@ async function create(productos, marca, Productos, Marca) {
             // console.log(error);
         
             return error;
-     
+    
         });
-    return productosCreated;
+    return productCreated;
 }
-
+/*
 
 async function BusquedaPrecioProducto(precioToFind, Productos) {
 
@@ -100,8 +102,10 @@ async function productosActualizar (codigoProducto ,Productos){
     }
     
     
-module.exports.create = create;
-module.exports.BusquedaPrecioProducto =BusquedaPrecioProducto;
+    module.exports.BusquedaPrecioProducto =BusquedaPrecioProducto;
 module.exports.BusquedaGeneralProductos = BusquedaGeneralProductos;
 module.exports.BuscaEliminaProducto =  BuscaEliminaProducto
 module.exports.productosActualizar=productosActualizar;
+
+  */  
+module.exports.create = create;
