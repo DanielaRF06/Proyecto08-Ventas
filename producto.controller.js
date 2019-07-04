@@ -6,11 +6,7 @@ async function create(producto, marca, Producto, Marca) {
         marca: marca
     };
 
-<<<<<<< HEAD:productos.controller.js
-    var marcaCreated = await marcaController.insertarMarca(marca, Marca);
-=======
     var brandCreated = await marcaController.createMarca(marca,Marca);
->>>>>>> 7ec7e19ae31cc54e3e785ec554a0db8c31731179:producto.controller.js
 
     producto["marca"] = brandCreated._id;
 
